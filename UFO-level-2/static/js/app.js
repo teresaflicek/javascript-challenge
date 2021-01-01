@@ -50,7 +50,11 @@ function runEnter() {
     console.log(inputValue);
 
     // filter the data
-    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
+    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue ||
+                                                    sighting.city === inputValue ||
+                                                    sighting.state === inputValue ||
+                                                    sighting.country === inputValue ||
+                                                    sighting.shape === inputValue);
 
     // print the values to the console
     console.log(filteredData);
