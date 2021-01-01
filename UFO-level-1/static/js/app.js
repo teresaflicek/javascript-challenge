@@ -5,23 +5,24 @@ var tableData = data;
 console.log(tableData);
 
 // function for rendering tables
-function renderTable(data)
-
+function renderTable(data) {
+    data.forEach(function (sightings) {
+        console.log(sightings);
+        var row = d3.select("tbody").append("tr");
+        Object.entries(sightings).forEach(function ([key, value]) {
+            console.log(key, value);
+            // Append a cell to the row for each value
+            // in the tableData object
+            var cell = row.append("td");
+            cell.text(value);
+        });
+    });
+};
 
 // loop through the data and append the table to the web page
-tableData.forEach(function (allsightings) {
-    console.log(allsightings);
-    var row = d3.select("tbody").append("tr");
-    Object.entries(allsightings).forEach(function ([key, value]) {
-        console.log(key, value);
-        // Append a cell to the row for each value
-        // in the tableData object
-        var cell = row.append("td");
-        cell.text(value);
-    });
-});
+renderTable(tableData);
 
-// date form for filter the events by date/time
+//filtering the events by date/time
 
 // select the buttom
 var button = d3.select("#filter-btn");
@@ -57,16 +58,6 @@ function runEnter() {
     d3.select("tbody").html("")
 
     // loop through the data and append the table to the web page
-    filteredData.forEach(function (filteredsighting) {
-        console.log(filteredsighting);
-        var row = d3.select("tbody").append("tr");
-        Object.entries(filteredsighting).forEach(function ([key, value]) {
-            console.log(key, value);
-            // Append a cell to the row for each value
-            // in the filteredData object
-            var cell = row.append("td");
-            cell.text(value);
-        });
-    });
+    renderTable(filteredData);
 
 }
